@@ -34,12 +34,16 @@ p {
     width: 100%;
     text-align: center;
     font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
+    font-family: Michroma-Regular;
+
 }
 
 .container {
     display: flex;
     width: 100%;
     text-align: left;
+    font-family: Michroma-Regular;
+
 }
 
 .leftPanel {
@@ -47,6 +51,8 @@ p {
     margin: 1%;
     display: table-cell;
     vertical-align: middle;
+    font-family: Michroma-Regular;
+
 }
 
 .mainContent {
@@ -54,6 +60,8 @@ p {
     margin: 1%;
     display: table-cell;
     vertical-align: middle;
+    font-family: Michroma-Regular;
+
 }
 
 .rightPanel {
@@ -62,6 +70,8 @@ p {
     font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
     display: table-cell;
     vertical-align: middle;
+    font-family: Michroma-Regular;
+
 }
 
 .channelButton {
@@ -71,7 +81,9 @@ p {
     background-color: black;
     text-align: left;
     font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
+    font-family: Michroma-Regular;
     margin: 1%;
+    cursor: crosshair;
 }
 
 #cbs {
@@ -112,6 +124,16 @@ p {
 .track-meta {
     max-width: 80%;
 }
+
+a:link {
+    color: red;
+    cursor: pointer;
+}
+
+a:visited {
+    color: red;
+}
+
 
 .nowPlaying {
     font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
