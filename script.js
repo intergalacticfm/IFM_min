@@ -4,6 +4,7 @@ const NOW_PLAYING_REQUEST_TIMEOUT_MSEC = 5000;
 const NOW_PLAYING_REQUEST_PREFIX = 'https://www.intergalactic.fm/now-playing?channel=';
 const NOW_PLAYING_PICTURE_REQUEST_PREFIX = 'https://www.intergalactic.fm/channel-content/';
 const NOW_PLAYING_DIV_ID = 'nowPlaying';
+const SCROBBLER_SHADOW_ID = 'shadowScrobblerId';
 const TRACK_META_DIV_ID = 'track-meta';
 const NOW_PLAYING_DIV_EXT_ID = 'nowPlayingExt';
 const NOW_PLAYING_COVER_DIV_ID = 'nowPlayingCover';
@@ -169,7 +170,7 @@ function feedNowPlaying(value) {
                 otherFieldsProcessed += otherInfo[i] + LINE_BREAK;
             }
         }
-        //feedHTML(NOW_PLAYING_DIV_ID, main);
+        feedHTML(SCROBBLER_SHADOW_ID, main);
         //feedHTML(NOW_PLAYING_DIV_EXT_ID, otherFieldsProcessed);
         extractCoverFromChannelContent();
     } else {
@@ -186,8 +187,6 @@ function reset() {
     stopAudio();
     removeWebConnectorDependencies();
     feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
-    //feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
-    //feedHTML(NOW_PLAYING_COVER_DIV_ID, EMPTY_VAL);
     selectedChannel = EMPTY_VAL;
     previousTrackTitle = EMPTY_VAL;
     removeWebConnectorDependencies();
@@ -234,11 +233,12 @@ function manageError(code, message) {
 async function extractCoverFromChannelContent() {
     var response = await fetch(NOW_PLAYING_PICTURE_REQUEST_PREFIX + selectedChannel);
     var body = await response.text();
-    var startOfCoverImgIndex = body.indexOf('<img');
-    var endOfCoverImgIndex = body.indexOf('alt=""/>') + 10;
-    var extractedCoverHTML = body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
+    //var startOfCoverImgIndex = body.indexOf('<img');
+    //var endOfCoverImgIndex = body.indexOf('alt=""/>') + 10;
+    //var extractedCoverHTML = body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
     //console.log(extractedCoverHTML);
-    feedHTML(NOW_PLAYING_DIV_ID, body);
+    var cleantBody = body.replaceAll('now playing', '');
+    feedHTML(NOW_PLAYING_DIV_ID, cleantBody);
 }
 
 /* following two functions adds/remove fake classes to the player to keep the web scrobble connector compatibility 
@@ -247,13 +247,13 @@ https://github.com/web-scrobbler/web-scrobbler/blob/master/src/connectors/interg
 function removeWebConnectorDependencies() {
     audio.classList.remove(VJS_PLAY_CONTROL_CLASS);
     audio.classList.remove(VJS_PLAYING_CLASS);
-    document.getElementById(NOW_PLAYING_DIV_ID).classList.remove(TRACK_META_CLASS);
+    document.getElementById(SCROBBLER_SHADOW_ID).classList.remove(TRACK_META_CLASS);
 }
 
 function addWebConnectorDependencies() {
     audio.classList.add(VJS_PLAY_CONTROL_CLASS);
     audio.classList.add(VJS_PLAYING_CLASS);
-    document.getElementById(NOW_PLAYING_DIV_ID).classList.add(TRACK_META_CLASS);
+    document.getElementById(SCROBBLER_SHADOW_ID).classList.add(TRACK_META_CLASS);
 }
 
 function feedHTML(elementId, value) {
