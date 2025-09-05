@@ -45,6 +45,10 @@ const MEDIA_ERR_SRC_NOT_SUPPORTED_CODE_MSG = 'NOT SUPPORTED';
 const TRACK_META_CLASS = 'track-meta';
 const AUDIO_PLAYER_DIV_ELEMENT = document.getElementById('audioPlayerDiv');
 const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
+const PARTY_AGENDA_ID = 'agenda';
+const IFM_PARTY_AGENDA =
+    '<iframe src="https://it.ra.co/widget/eventlisting?dj=i-f&bgcolor=000000&linkcolor=6b96c2&textcolor=ffffff"" height="640px" width="100%"' + 'style="border:none" /><br>' +
+    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height="640px" width="100%"' + 'style="border:none"></iframe>';
 
 var currentNowPlayingUrl;
 var selectedChannel;
@@ -54,6 +58,7 @@ var channelContentUrl;
 window.onload = function () {
     // any init function needed at the load
     playTV('cbstv');
+    feedHTML(PARTY_AGENDA_ID, IFM_PARTY_AGENDA);
 }
 
 function playChannel(channelNumber) {
