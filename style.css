@@ -71,7 +71,7 @@ p {
     background-color: black;
     text-align: left;
     font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
-    margin: 1em;
+    margin: 1%;
 }
 
 #cbs {
@@ -105,6 +105,12 @@ p {
 
 #audioPlayerDiv {
     text-align: center;
+    max-width: inherit;
+}
+
+#audioPlayer,
+.track-meta {
+    max-width: 80%;
 }
 
 .nowPlaying {
@@ -112,4 +118,5 @@ p {
     text-align: left;
     display: table-cell;
     vertical-align: middle;
+    max-width: 90%;
 }

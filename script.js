@@ -237,7 +237,7 @@ async function extractCoverFromChannelContent() {
     //var endOfCoverImgIndex = body.indexOf('alt=""/>') + 10;
     //var extractedCoverHTML = body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
     //console.log(extractedCoverHTML);
-    var cleantBody = body.replaceAll('now playing', '');
+    var cleantBody = body.replaceAll('now playing', '').replaceAll('airtime', '').replaceAll('mb-4', '');
     feedHTML(NOW_PLAYING_DIV_ID, cleantBody);
 }
 
