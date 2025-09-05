@@ -13,6 +13,11 @@ h5 {
     margin: 0 auto;
 }
 
+.topLinks {
+    width: 100%;
+    text-align: center;
+}
+
 .container {
     display: flex;
     margin: 0 auto;
@@ -21,11 +26,16 @@ h5 {
 }
 
 .leftPanel {
-    width: 30%;
+    width: 25%;
 }
 
 .mainContent {
-    width: 70%;
+    width: 50%;
+    margin: 1%;
+}
+
+.rightPanel {
+    width: 20%;
 }
 
 body {
