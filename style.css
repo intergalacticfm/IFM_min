@@ -30,7 +30,7 @@ h5 {
 }
 
 .mainContent {
-    width: 50%;
+    width: 55%;
     margin: 1%;
 }
 
@@ -48,7 +48,7 @@ body {
 
 #cbs {
     color: white;
-    border-color: red;
+    border-color: white;
     border-radius: 4px;
     background-color: black;
     font-family: monospace, monospace;
@@ -70,9 +70,21 @@ body {
     font-family: monospace, monospace;
 }
 
-.ongoing {
+#cbstv {
     color: red;
-    font-weight: bold;
+    border-color: red;
+    border-radius: 4px;
+    background-color: black;
+    font-family: monospace, monospace;
+}
+
+#mtv {
+    color: red;
+    border-color: red;
+    border-radius: 4px;
+    background-color: black;
+    font-family: monospace, monospace;
+
 }
 
 table {

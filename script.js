@@ -1,4 +1,5 @@
-const audio = document.getElementById('player');
+const audio = document.getElementById('audioPlayer');
+const video = document.getElementById('videoPlayer');
 const NOW_PLAYING_REQUEST_TIMEOUT_MSEC = 5000;
 const NOW_PLAYING_REQUEST_PREFIX = 'https://www.intergalactic.fm/now-playing?channel=';
 const NOW_PLAYING_PICTURE_REQUEST_PREFIX = 'https://www.intergalactic.fm/channel-content/';
@@ -7,6 +8,9 @@ const TRACK_META_DIV_ID = 'track-meta';
 const NOW_PLAYING_DIV_EXT_ID = 'nowPlayingExt';
 const NOW_PLAYING_COVER_DIV_ID = 'nowPlayingCover';
 const AUDIO_PLAYER_SOURCE_ID = 'audioPlayerSource';
+const VIDEO_PLAYER_SOURCE_ID = 'videoPlayerSource';
+const CBS_TV_PLAYLIST = 'https://intergalactic.tv/live/smil:tv.smil/playlist.m3u8';
+const MTV_PLAYLIST = 'https://intergalactic.tv/live/smil:mtv.smil/playlist.m3u8';
 const ERROR_MSG = 'Error: ';
 const STYLE = 'style';
 const NO_INFO_MSG = 'No info available';
@@ -15,7 +19,6 @@ const CBS_CHANNEL_ID = 'cbs';
 const DF_CHANNEL_ID = 'df';
 const TDM_CHANNEL_ID = 'tdm';
 const channelsId = ['cbs', 'df', 'tdm'];
-const ONGOING = 'ongoing';
 const CHANNEL_DATA_VALUE_KEY = 'data-value';
 const AUDIO_CONTROLS_KEY = 'controls';
 const AUDIO_EVENT_PLAYING_NAME = 'playing';
@@ -39,6 +42,8 @@ const MEDIA_ERR_NETWORK_CODE_MSG = 'NETWORK';
 const MEDIA_ERR_DECODE_CODE_MSG = 'DECODE';
 const MEDIA_ERR_SRC_NOT_SUPPORTED_CODE_MSG = 'NOT SUPPORTED';
 const TRACK_META_CLASS = 'track-meta';
+const AUDIO_PLAYER_DIV_ELEMENT = document.getElementById('audioPlayerDiv');
+const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
 
 
 var currentNowPlayingUrl;
@@ -57,7 +62,34 @@ function playChannel(channelNumber) {
     currentNowPlayingUrl = NOW_PLAYING_REQUEST_PREFIX + channelElement.innerHTML;
     channelContentUrl = NOW_PLAYING_PICTURE_REQUEST_PREFIX + channelNumber;
     selectedChannel = channelNumber;
-    document.getElementById(channelNumber + ONGOING).classList.add(ONGOING);
+    showElement(AUDIO_PLAYER_DIV_ELEMENT);
+}
+
+function playTV(tvChannelName) {
+    reset();
+    showElement(VIDEO_PLAYER_DIV_ELEMENT);
+    var videoSrc = CBS_TV_PLAYLIST;
+    if (tvChannelName === 'mtv') {
+        videoSrc = MTV_PLAYLIST;
+    }
+
+    if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            video.play();
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // fallback for Safari/iOS
+        video.src = videoSrc;
+        video.play();
+    }
+}
+
+function stopVideo() {
+    video.pause();
+    video.currentTime = 0;
 }
 
 // when the audio player has finished loading and is ready to play
@@ -133,7 +165,7 @@ function feedNowPlaying(value) {
 function reset() {
     clearTimeout(nowPlayingRequestTimer);
     audio.controls = EMPTY_VAL;
-    removeOngoingMarker();
+    stopVideo();
     removeWebConnectorDependencies();
     feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
     feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
@@ -141,12 +173,17 @@ function reset() {
     selectedChannel = EMPTY_VAL;
     previousTrackTitle = EMPTY_VAL;
     removeWebConnectorDependencies();
+    hideElement(VIDEO_PLAYER_DIV_ELEMENT);
+    hideElement(AUDIO_PLAYER_DIV_ELEMENT);
 }
 
-function removeOngoingMarker() {
-    if (selectedChannel) {
-        document.getElementById(selectedChannel + ONGOING).classList.remove(ONGOING);
-    }
+/* utility function for showing an element in html, used for the "now playing" modal */
+function showElement(element) {
+    element.style.display = "block";
+}
+/* utility function for hiding an element in html, used for the "now playing" modal */
+function hideElement(element) {
+    element.style.display = "none";
 }
 
 function manageError(code, message) {

@@ -23,45 +23,54 @@
 
     <div class="container">
         <div class="leftPanel">
-            <span id="1ongoing">• </span><button id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button>
+            <button id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button>
             <br><br>
 
-            <span id="2ongoing">• </span><button id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button>
+            <button id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button>
             <br><br>
 
-            <span id="3ongoing">• </span><button id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
+            <button id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
+            <br><br>
+
+            <button id="cbstv" onclick="playTV('cbstv');">CBS TV</button>
+            <br><br>
+
+            <button id="mtv" onclick="playTV('mtv');">MURDER CAPITAL TV</button>
             <br><br>
         </div>
         <div class="mainContent">
-            <div id="loading"></div>
-            <audio id="player">
-                <source id="audioPlayerSource" src="" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <br><br>
-            <div id="track-meta" class="trackMeta">
-                <div id="nowPlaying">
+            <div id="audioPlayerDiv">
+                <div id="loading"></div>
+                <audio id="audioPlayer">
+                    <source id="audioPlayerSource" src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <br><br>
+                <div id="track-meta" class="trackMeta">
+                    <div id="nowPlaying">
+                    </div>
                 </div>
+                <br>
+                <table>
+                    <tr>
+                        <th>
+                            <div id="nowPlayingCover"></div>
+                        </th>
+                        <th>
+                            <div id="nowPlayingExt">
+                            </div>
+                        </th>
+                    </tr>
+                </table>
             </div>
-            <br>
-            <table>
-                <tr>
-                    <th>
-                        <div id="nowPlayingCover"></div>
-                    </th>
-                    <th>
-                        <div id="nowPlayingExt">
-                        </div>
-                    </th>
-                </tr>
-            </table>
+            <div id="videoPlayerDiv">
+                <video id="videoPlayer" controls autoplay muted playsinline width="100%" height="100%"></video>
+            </div>
         </div>
         <div class="rightPanel"></div>
 
     </div>
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="script.js"></script>
 </body>
 
