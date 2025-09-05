@@ -45,10 +45,12 @@ const MEDIA_ERR_SRC_NOT_SUPPORTED_CODE_MSG = 'NOT SUPPORTED';
 const TRACK_META_CLASS = 'track-meta';
 const AUDIO_PLAYER_DIV_ELEMENT = document.getElementById('audioPlayerDiv');
 const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
-const PARTY_AGENDA_ID = 'agenda';
-const IFM_PARTY_AGENDA =
-    '<iframe src="https://it.ra.co/widget/eventlisting?dj=i-f&bgcolor=000000&linkcolor=6b96c2&textcolor=ffffff"" height="640px" width="100%"' + 'style="border:none" /><br>' +
-    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height="640px" width="100%"' + 'style="border:none"></iframe>';
+const IFMX_AGENDA_ID = 'ifmx_agenda';
+const IFM_AGENDA_ID = 'ifm_agenda';
+const IFMX_PARTY_AGENDA_WIDGET =
+    '<iframe src="https://it.ra.co/widget/eventlisting?dj=i-f&bgcolor=000000&linkcolor=6b96c2&textcolor=ffffff"' + ' height = "640px" width = "100%" style = "border:none"/>';
+const IFM_PROMOTER_AGENDA_WIDGET =
+    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height="640px" width="100%" style="border:none" />';
 
 var currentNowPlayingUrl;
 var selectedChannel;
@@ -58,7 +60,8 @@ var channelContentUrl;
 window.onload = function () {
     // any init function needed at the load
     playTV('cbstv');
-    feedHTML(PARTY_AGENDA_ID, IFM_PARTY_AGENDA);
+    feedHTML(IFMX_AGENDA_ID, IFMX_PARTY_AGENDA_WIDGET);
+    feedHTML(IFM_AGENDA_ID, IFM_PROMOTER_AGENDA_WIDGET);
 }
 
 function playChannel(channelNumber) {
