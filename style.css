@@ -7,6 +7,8 @@ body {
     font-size: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
     text-align: left;
     font-family: Michroma-Regular;
+    color: white;
+    background-color: black;
 }
 
 h1 {
@@ -27,40 +29,45 @@ h5 {
 .topLinks {
     width: 100%;
     text-align: center;
+    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
 }
 
 .container {
     display: flex;
-    margin: 0 auto;
-    border: 1px solid black;
     width: 100%;
+    text-align: left;
 }
 
 .leftPanel {
-    width: 25%;
+    width: 20%;
+    margin: 1%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .mainContent {
-    width: 55%;
+    width: 70%;
     margin: 1%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .rightPanel {
-    width: 20%;
+    width: auto;
+    margin-right: 1%;
+    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
+    display: table-cell;
+    vertical-align: middle;
 }
 
-body {
-    color: white;
-    background-color: black;
-}
-
-.button {
-    width: 90%;
-    max-height: 5em;
+.channelButton {
+    width: 100%;
+    max-height: 6em;
     border-radius: 4px;
     background-color: black;
     text-align: left;
-    font-size: clamp(0.2rem, 0.4rem + 0.8vw, 5rem);
+    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
+    margin: 1em;
 }
 
 #cbs {
@@ -71,15 +78,11 @@ body {
 #df {
     color: white;
     border-color: yellow;
-    border-radius: 4px;
-    background-color: black;
 }
 
 #tdm {
     color: white;
     border-color: cornflowerblue;
-    border-radius: 4px;
-    background-color: black;
 }
 
 #cbstv {
@@ -96,10 +99,10 @@ body {
     background-color: black;
 }
 
-table {
-    display: table;
-    margin: 0 auto;
-    border: 0px solid;
-    text-align: left;
-    width: 100%;
+#audioPlayerDiv {
+    text-align: center;
+}
+
+.nowPlaying {
+    font-size: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
 }

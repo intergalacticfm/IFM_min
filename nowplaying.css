@@ -5483,7 +5483,6 @@ button.link:hover {
     padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
 
-.navbar > .container,
 .navbar > .container-fluid,
 .navbar > .container-sm,
 .navbar > .container-md,
@@ -24687,7 +24686,6 @@ progress {
     color: var(--bs-secondary-color);
 }
 
-.container,
 .container-fluid,
 .container-sm,
 .container-md,
@@ -24705,7 +24703,6 @@ progress {
 
 @media (min-width:576px) {
 
-    .container,
     .container-sm {
         max-width: 540px;
     }
@@ -24713,7 +24710,6 @@ progress {
 
 @media (min-width:768px) {
 
-    .container,
     .container-sm,
     .container-md {
         max-width: 720px;
@@ -24722,7 +24718,6 @@ progress {
 
 @media (min-width:992px) {
 
-    .container,
     .container-sm,
     .container-md,
     .container-lg {
@@ -24732,7 +24727,6 @@ progress {
 
 @media (min-width:1200px) {
 
-    .container,
     .container-sm,
     .container-md,
     .container-lg,
@@ -24743,7 +24737,6 @@ progress {
 
 @media (min-width:1400px) {
 
-    .container,
     .container-sm,
     .container-md,
     .container-lg,
@@ -28603,7 +28596,6 @@ button.link:hover {
     padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
 
-.navbar > .container,
 .navbar > .container-fluid,
 .navbar > .container-sm,
 .navbar > .container-md,
@@ -29663,9 +29655,9 @@ button.link:hover {
 }
 
 .pagination-lg {
-    --bs-pagination-padding-x: 1.5rem;
-    --bs-pagination-padding-y: 0.75rem;
-    --bs-pagination-font-size: 1.25rem;
+    --bs-pagination-padding-x: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
+    --bs-pagination-padding-y: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
+    --bs-pagination-font-size: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
     --bs-pagination-border-radius: var(--bs-border-radius-lg);
 }
 
