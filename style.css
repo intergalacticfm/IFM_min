@@ -43,7 +43,6 @@ body {
     background-color: black;
     font-family: monospace, monospace;
     font-size: 1em;
-
 }
 
 #cbs {
@@ -93,8 +92,4 @@ table {
     border: 0px solid;
     text-align: left;
     width: 100%;
-}
-
-.trackMeta {
-    text-align: left;
 }

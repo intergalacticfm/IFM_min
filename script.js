@@ -169,8 +169,8 @@ function feedNowPlaying(value) {
                 otherFieldsProcessed += otherInfo[i] + LINE_BREAK;
             }
         }
-        feedHTML(NOW_PLAYING_DIV_ID, main);
-        feedHTML(NOW_PLAYING_DIV_EXT_ID, otherFieldsProcessed);
+        //feedHTML(NOW_PLAYING_DIV_ID, main);
+        //feedHTML(NOW_PLAYING_DIV_EXT_ID, otherFieldsProcessed);
         extractCoverFromChannelContent();
     } else {
         feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
@@ -186,8 +186,8 @@ function reset() {
     stopAudio();
     removeWebConnectorDependencies();
     feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
-    feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
-    feedHTML(NOW_PLAYING_COVER_DIV_ID, EMPTY_VAL);
+    //feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
+    //feedHTML(NOW_PLAYING_COVER_DIV_ID, EMPTY_VAL);
     selectedChannel = EMPTY_VAL;
     previousTrackTitle = EMPTY_VAL;
     removeWebConnectorDependencies();
@@ -238,7 +238,7 @@ async function extractCoverFromChannelContent() {
     var endOfCoverImgIndex = body.indexOf('alt=""/>') + 10;
     var extractedCoverHTML = body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
     //console.log(extractedCoverHTML);
-    feedHTML(NOW_PLAYING_COVER_DIV_ID, extractedCoverHTML);
+    feedHTML(NOW_PLAYING_DIV_ID, body);
 }
 
 /* following two functions adds/remove fake classes to the player to keep the web scrobble connector compatibility 
@@ -247,13 +247,13 @@ https://github.com/web-scrobbler/web-scrobbler/blob/master/src/connectors/interg
 function removeWebConnectorDependencies() {
     audio.classList.remove(VJS_PLAY_CONTROL_CLASS);
     audio.classList.remove(VJS_PLAYING_CLASS);
-    document.getElementById(TRACK_META_DIV_ID).classList.remove(TRACK_META_CLASS);
+    document.getElementById(NOW_PLAYING_DIV_ID).classList.remove(TRACK_META_CLASS);
 }
 
 function addWebConnectorDependencies() {
     audio.classList.add(VJS_PLAY_CONTROL_CLASS);
     audio.classList.add(VJS_PLAYING_CLASS);
-    document.getElementById(TRACK_META_DIV_ID).classList.add(TRACK_META_CLASS);
+    document.getElementById(NOW_PLAYING_DIV_ID).classList.add(TRACK_META_CLASS);
 }
 
 function feedHTML(elementId, value) {
