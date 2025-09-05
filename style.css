@@ -117,6 +117,7 @@ p {
 #audioPlayerDiv {
     text-align: center;
     max-width: inherit;
+    overflow-y: auto;
 }
 
 #audioPlayer,
@@ -125,12 +126,17 @@ p {
 }
 
 a:link {
-    color: red;
+    color: white;
     cursor: pointer;
 }
 
 a:visited {
-    color: red;
+    color: white;
+}
+
+.rawidget {
+    width: 100%;
+    height: 100%;
 }
 
 
