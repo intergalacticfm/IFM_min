@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'Michroma-Regular';
+    src: url('Michroma-Regular.ttf');
+}
+
+body {
+    font-size: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
+    text-align: left;
+    font-family: Michroma-Regular;
+}
+
 h1 {
     display: flex;
     justify-content: center;
@@ -41,16 +52,20 @@ h5 {
 body {
     color: white;
     background-color: black;
-    font-family: monospace, monospace;
-    font-size: 1em;
+}
+
+.button {
+    width: 90%;
+    max-height: 5em;
+    border-radius: 4px;
+    background-color: black;
+    text-align: left;
+    font-size: clamp(0.2rem, 0.4rem + 0.8vw, 5rem);
 }
 
 #cbs {
     color: white;
     border-color: white;
-    border-radius: 4px;
-    background-color: black;
-    font-family: monospace, monospace;
 }
 
 #df {
@@ -58,7 +73,6 @@ body {
     border-color: yellow;
     border-radius: 4px;
     background-color: black;
-    font-family: monospace, monospace;
 }
 
 #tdm {
@@ -66,7 +80,6 @@ body {
     border-color: cornflowerblue;
     border-radius: 4px;
     background-color: black;
-    font-family: monospace, monospace;
 }
 
 #cbstv {
@@ -74,7 +87,6 @@ body {
     border-color: red;
     border-radius: 4px;
     background-color: black;
-    font-family: monospace, monospace;
 }
 
 #mtv {
@@ -82,8 +94,6 @@ body {
     border-color: red;
     border-radius: 4px;
     background-color: black;
-    font-family: monospace, monospace;
-
 }
 
 table {
