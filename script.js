@@ -45,14 +45,18 @@ const TRACK_META_CLASS = 'track-meta';
 const AUDIO_PLAYER_DIV_ELEMENT = document.getElementById('audioPlayerDiv');
 const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
 
-
 var currentNowPlayingUrl;
 var selectedChannel;
 var nowPlayingRequestTimer;
 var channelContentUrl;
 
+window.onload = function () {
+    // any init function needed at the load
+}
+
 function playChannel(channelNumber) {
     reset();
+    showElement(AUDIO_PLAYER_DIV_ELEMENT);
     feedHTML(LOADING_DIV_ID, LOADING_MSG);
     var source = document.getElementById(AUDIO_PLAYER_SOURCE_ID);
     var channelElement = document.getElementById(channelsId[channelNumber - 1]);
@@ -85,6 +89,11 @@ function playTV(tvChannelName) {
         video.src = videoSrc;
         video.play();
     }
+}
+
+function stopAudio() {
+    audio.pause();
+    audio.currentTime = 0;
 }
 
 function stopVideo() {
@@ -166,6 +175,7 @@ function reset() {
     clearTimeout(nowPlayingRequestTimer);
     audio.controls = EMPTY_VAL;
     stopVideo();
+    stopAudio();
     removeWebConnectorDependencies();
     feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
     feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
@@ -221,7 +231,6 @@ async function extractCoverFromChannelContent() {
     var extractedCoverHTML = body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
     //console.log(extractedCoverHTML);
     feedHTML(NOW_PLAYING_COVER_DIV_ID, extractedCoverHTML);
-
 
 }
 
