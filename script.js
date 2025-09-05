@@ -67,16 +67,14 @@ function playChannel(channelNumber) {
     currentNowPlayingUrl = NOW_PLAYING_REQUEST_PREFIX + channelElement.innerHTML;
     channelContentUrl = NOW_PLAYING_PICTURE_REQUEST_PREFIX + channelNumber;
     selectedChannel = channelNumber;
-    showElement(AUDIO_PLAYER_DIV_ELEMENT);
 }
+
+var ongoingHLS;
 
 function playTV(tvChannelName) {
     reset();
     showElement(VIDEO_PLAYER_DIV_ELEMENT);
-    var videoSrc = CBS_TV_PLAYLIST;
-    if (tvChannelName === 'mtv') {
-        videoSrc = MTV_PLAYLIST;
-    }
+    var videoSrc = tvChannelName === 'mtv' ? MTV_PLAYLIST : CBS_TV_PLAYLIST;
 
     if (Hls.isSupported()) {
         const hls = new Hls();
@@ -85,6 +83,7 @@ function playTV(tvChannelName) {
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
             video.play();
         });
+        ongoingHLS = hls;
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         // fallback for Safari/iOS
         video.src = videoSrc;
@@ -98,8 +97,16 @@ function stopAudio() {
 }
 
 function stopVideo() {
-    video.pause();
-    video.currentTime = 0;
+    if (video.currentTime > 0) {
+        video.pause();
+        video.currentTime = 0;
+        if (ongoingHLS) {
+            ongoingHLS.destroy();
+        } else {
+            video.removeAttribute("src");
+            video.load();
+        }
+    }
 }
 
 // when the audio player has finished loading and is ready to play
@@ -119,8 +126,8 @@ audio.addEventListener(AUDIO_EVENT_ERROR_NAME, function (e) {
 
 // action performed on pause button click
 audio.addEventListener(AUDIO_EVENT_PAUSE_NAME, function (e) {
+    audio.pause();
     audio.currentTime = 0;
-    reset();
 });
 
 // request now playing from IFM server every NOW_PLAYING_REQUEST_TIMEOUT_MSEC
