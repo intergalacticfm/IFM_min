@@ -14,9 +14,18 @@ h5 {
 }
 
 .container {
-    display: table;
+    display: flex;
     margin: 0 auto;
     border: 1px solid black;
+    width: 100%;
+}
+
+.leftPanel {
+    width: 30%;
+}
+
+.mainContent {
+    width: 70%;
 }
 
 body {
@@ -59,8 +68,11 @@ body {
 table {
     display: table;
     margin: 0 auto;
-    width: 50%;
-    height: 20%;
     border: 0px solid;
+    text-align: left;
+    width: 100%;
+}
+
+.trackMeta {
     text-align: left;
 }

@@ -10,42 +10,48 @@
 </head>
 
 <body>
-    <h1><img src="https://intergalactic.fm/themes/custom/ifm/logo.svg" alt="IFM logo"></h1>
+    <h1><img src="icon100.png" alt="IFM logo"></h1>
     <h2>INTERGALACTIC FM</h2>
 
 
     <div class="container">
-        <span id="1ongoing">• </span><button id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button>
-        <br><br>
+        <div class="leftPanel">
+            <span id="1ongoing">• </span><button id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button>
+            <br><br>
 
-        <span id="2ongoing">• </span><button id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button>
-        <br><br>
+            <span id="2ongoing">• </span><button id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button>
+            <br><br>
 
-        <span id="3ongoing">• </span><button id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
-        <br><br>
-
-        <div id="loading"></div>
-        <audio id="player">
-            <source id="audioPlayerSource" src="" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+            <span id="3ongoing">• </span><button id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
+            <br><br>
+        </div>
+        <div class="mainContent">
+            <div id="loading"></div>
+            <audio id="player">
+                <source id="audioPlayerSource" src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <br><br>
+            <div id="track-meta" class="trackMeta">
+                <div id="nowPlaying">
+                </div>
+            </div>
+            <br>
+            <table>
+                <tr>
+                    <th>
+                        <div id="nowPlayingCover"></div>
+                    </th>
+                    <th>
+                        <div id="nowPlayingExt">
+                        </div>
+                    </th>
+                </tr>
+            </table>
+        </div>
 
     </div>
-    <br><br>
-    <div id="track-meta">
-        <h5 id="nowPlaying"> </h5>
-    </div>
-    <br>
-    <table>
-        <tr>
-            <th>
-                <div id="nowPlayingCover"></div>
-            </th>
-            <th>
-                <h6 id="nowPlayingExt"></h6>
-            </th>
-        </tr>
-    </table>
+
 
 
     <script src="script.js"></script>
