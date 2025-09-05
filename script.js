@@ -52,6 +52,7 @@ var channelContentUrl;
 
 window.onload = function () {
     // any init function needed at the load
+    playTV('cbstv');
 }
 
 function playChannel(channelNumber) {
@@ -231,7 +232,6 @@ async function extractCoverFromChannelContent() {
     var extractedCoverHTML = body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
     //console.log(extractedCoverHTML);
     feedHTML(NOW_PLAYING_COVER_DIV_ID, extractedCoverHTML);
-
 }
 
 /* following two functions adds/remove fake classes to the player to keep the web scrobble connector compatibility 
