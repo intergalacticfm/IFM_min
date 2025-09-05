@@ -26,6 +26,10 @@ h5 {
     margin: 0 auto;
 }
 
+p {
+    font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
+}
+
 .topLinks {
     width: 100%;
     text-align: center;
@@ -104,5 +108,8 @@ h5 {
 }
 
 .nowPlaying {
-    font-size: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
+    font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
 }
