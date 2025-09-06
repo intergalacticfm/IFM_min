@@ -48,7 +48,7 @@ const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
 const IFMX_AGENDA_ID = 'ifmx_agenda';
 const IFM_AGENDA_ID = 'ifm_agenda';
 const IFMX_PARTY_AGENDA_WIDGET =
-    '<iframe id="ifmxAgenda" src="https://it.ra.co/widget/eventlisting?dj=i-f&bgcolor=000000&linkcolor=6b96c2&textcolor=ffffff" overflow:hidden; position:relative; height="100%" width="100%" style="border:none; font-size=1vw"/>';
+    '<iframe id="ifmxAgenda" src="https://it.ra.co/widget/eventlisting?dj=i-f&&hideimage=true&bgcolor=000000&linkcolor=6b96c2&textcolor=ffffff" height="100%" width="100%" style="border:none; font-size=1vw"/>';
 const IFM_PROMOTER_AGENDA_WIDGET =
     '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height="640px" width="100%" style="border:none" />';
 
