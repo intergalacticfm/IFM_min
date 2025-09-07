@@ -26,13 +26,17 @@
     flex-shrink: 0 !important;
 }
 
+h5 {
+    font-size: clamp(0.4rem, 0.4rem + 0.6vw, 4rem);
+}
+
 .ms-3 {
     margin-left: 1rem !important;
 }
 
 .flex-grow-1 {
     flex-grow: 1 !important;
-    font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
+    font-size: clamp(0.4rem, 0.5rem + 0.5vw, 0.8rem);
 }
 
 .mt-0 {

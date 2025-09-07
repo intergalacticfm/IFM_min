@@ -47,15 +47,6 @@ h2 {
     justify-content: center;
 }
 
-h5 {
-    display: table;
-    text-align: left;
-}
-
-p {
-    font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
-}
-
 .topLinks {
     width: 100%;
     text-align: center;
@@ -156,6 +147,12 @@ a:visited {
     border-width: 2px;
     background-color: black;
     font-size: clamp(0.2rem, 0.4rem + 0.6vw, 1rem);
+}
+
+.stationMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nowPlaying {

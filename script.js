@@ -52,6 +52,12 @@ const PARTY_AGENDA_WIDGET =
     'waiting for the API to be implemented';
 const RADIO_AGENDA_WIDGET =
     'waiting for the API to be implemented';
+const CBS_LOGO = "img/cbs.png";
+const DF_LOGO = "img/df.png";
+const TDM_LOGO = "img/tdm.png";
+const MTV_LOGO = "img/mtv.png";
+const STATION_LOGOS = [CBS_LOGO, DF_LOGO, TDM_LOGO, MTV_LOGO];
+const STATION_MESSAGE_ID = 'stationMessage';
 
 var currentNowPlayingUrl;
 var selectedChannel;
@@ -154,6 +160,8 @@ async function getNowPlaying() {
             const trackMetadata = await response.json();
             if (trackMetadata) {
                 var title = trackMetadata.title;
+                var stationMessage = trackMetadata.station_message[0].value;
+                feedStationMessage(stationMessage);
                 if (previousTrackTitle != title) {
                     // new track
                     feedNowPlaying(title);
@@ -169,6 +177,10 @@ async function getNowPlaying() {
         }
         nowPlayingRequestTimer = setTimeout(getNowPlaying, NOW_PLAYING_REQUEST_TIMEOUT_MSEC);
     }
+}
+
+function feedStationMessage(stationMessage) {
+    feedHTML(STATION_MESSAGE_ID, '<img src="' + STATION_LOGOS[selectedChannel - 1] + '" style="height: 10%; width: 10%; object-fit: contain; padding:2%"/>' + stationMessage);
 }
 
 // populate the now playing html
