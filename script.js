@@ -207,6 +207,7 @@ function feedNowPlaying(value) {
 }
 
 function reset() {
+    // remove active animation from all channels
     var allChannelButtons = document.getElementsByClassName('channelButton');
     Array.prototype.forEach.call(allChannelButtons, function (button) {
         button.classList.remove(ACTIVE_CHANNEL_CLASS);
@@ -218,6 +219,7 @@ function reset() {
     stopAudio();
     removeWebConnectorDependencies();
     feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
+    feedHTML(STATION_MESSAGE_ID, EMPTY_VAL);
     selectedChannel = EMPTY_VAL;
     previousTrackTitle = EMPTY_VAL;
     removeWebConnectorDependencies();
