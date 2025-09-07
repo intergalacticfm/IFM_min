@@ -205,9 +205,7 @@ a:visited {
     }
 
     .channelButton {
-        padding-top: 2%;
-        padding-right: 0;
-        padding-left: 0;
+        padding: 2%;
         width: 7rem;
     }
 
@@ -219,7 +217,7 @@ a:visited {
     }
 
     .mainContent {
-        height: 200px;
+        height: 250px;
         overflow: auto;
         flex: unset;
         text-align: center;
