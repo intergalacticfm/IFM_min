@@ -45,12 +45,12 @@ const MEDIA_ERR_SRC_NOT_SUPPORTED_CODE_MSG = 'NOT SUPPORTED';
 const TRACK_META_CLASS = 'track-meta';
 const AUDIO_PLAYER_DIV_ELEMENT = document.getElementById('audioPlayerDiv');
 const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
-const IFMX_AGENDA_ID = 'ifmx_agenda';
-const IFM_AGENDA_ID = 'ifm_agenda';
-const IFMX_PARTY_AGENDA_WIDGET =
-    '<iframe id="ifmxAgenda" src="https://it.ra.co/widget/eventlisting?dj=i-f&&hideimage=true&bgcolor=000000&linkcolor=6b96c2&textcolor=ffffff" height="100%" width="100%" style="border:none; font-size=1vw"/>';
-const IFM_PROMOTER_AGENDA_WIDGET =
-    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height="640px" width="100%" style="border:none" />';
+const PARTY_AGENDA_ID = 'party_agenda';
+const RADIO_AGENDA_ID = 'radio_agenda';
+const PARTY_AGENDA_WIDGET =
+    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height="100%" width="100%" style="border:none" />';
+const RADIO_AGENDA_WIDGET =
+    'upcoming...';
 
 var currentNowPlayingUrl;
 var selectedChannel;
@@ -60,10 +60,10 @@ var channelContentUrl;
 window.onload = function () {
     // any init function needed at the load
     playTV('cbstv');
-    feedHTML(IFMX_AGENDA_ID, IFMX_PARTY_AGENDA_WIDGET);
-    //document.getElementById('ifmxAgenda').contents().find("logo-footer").remove();
-    //document.getElementById('ifmxAgenda').contents().find("copy-footer").remove();
-    //feedHTML(IFM_AGENDA_ID, IFM_PROMOTER_AGENDA_WIDGET);
+
+    feedHTML(PARTY_AGENDA_ID, PARTY_AGENDA_WIDGET);
+    feedHTML(RADIO_AGENDA_ID, RADIO_AGENDA_WIDGET);
+
 }
 
 function playChannel(channelNumber) {
