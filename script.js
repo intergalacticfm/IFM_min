@@ -91,19 +91,19 @@ function playTV(tvChannelName) {
     showElement(VIDEO_PLAYER_DIV_ELEMENT);
     var videoSrc = tvChannelName === 'mtv' ? MTV_PLAYLIST : CBS_TV_PLAYLIST;
 
-    if (Hls.isSupported()) {
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+    } else if (Hls.isSupported()) {
         const hls = new Hls();
+        ongoingHLS = hls;
         hls.loadSource(videoSrc);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            video.play();
-        });
-        ongoingHLS = hls;
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        // fallback for Safari/iOS
-        video.src = videoSrc;
-        video.play();
     }
+
+    video.play().catch(err => {
+        alert("PLAYINH ERROR:", err);
+    });
+
 }
 
 function stopAudio() {
