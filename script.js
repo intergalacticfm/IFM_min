@@ -49,9 +49,9 @@ const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
 const PARTY_AGENDA_ID = 'party_agenda';
 const RADIO_AGENDA_ID = 'radio_agenda';
 const PARTY_AGENDA_WIDGET =
-    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height = "100%" width="100%" style="border:none" />';
+    'waiting for the API to be implemented';
 const RADIO_AGENDA_WIDGET =
-    'upcoming...';
+    'waiting for the API to be implemented';
 
 var currentNowPlayingUrl;
 var selectedChannel;
