@@ -1,5 +1,5 @@
 body {
-    font-size: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
+    font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
     text-align: left;
     font-family: Monospace;
     color: white;
@@ -86,7 +86,7 @@ p {
     display: table-cell;
     vertical-align: middle;
     font-family: Monospace;
-
+    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 1rem);
 }
 
 .mainContent {
@@ -95,11 +95,9 @@ p {
     display: table-cell;
     vertical-align: middle;
     font-family: Monospace;
-
 }
 
 .channelButton {
-
     max-height: 6em;
     border-radius: 4px;
     background-color: black;
@@ -163,8 +161,8 @@ a:visited {
     border-style: solid;
     border-width: 2px;
     background-color: black;
+    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 1rem);
 }
-
 
 .nowPlaying {
     font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
