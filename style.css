@@ -56,7 +56,7 @@ p {
 .topLinks {
     width: 100%;
     text-align: center;
-    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
+    font-size: clamp(0.4rem, 0.4rem + 0.6vw, 4rem);
     font-family: Monospace;
 
 }
@@ -74,7 +74,7 @@ p {
     display: table-cell;
     vertical-align: middle;
     font-family: Monospace;
-    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 1rem);
+    font-size: clamp(0.4rem, 0.4rem + 0.6vw, 1rem);
 }
 
 .mainContent {
@@ -91,7 +91,7 @@ p {
     border-radius: 4px;
     background-color: black;
     text-align: left;
-    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
+    font-size: clamp(0.4rem, 0.4rem + 0.6vw, 4rem);
     font-family: Monospace;
     margin: 1%;
 }
@@ -180,6 +180,14 @@ a:visited {
 
 /* mobile screen adaptations */
 @media (max-width: 600px) {
+
+    .topLinks,
+    .header,
+    .channelButton,
+    .agendaContainer {
+        font-size: clamp(0.5rem, 0.5rem + 1vw, 2rem);
+    }
+
     .header {
         flex-direction: column;
         align-items: stretch;
@@ -190,7 +198,14 @@ a:visited {
     .channelsBox {
         flex: unset;
         width: 100%;
+        padding-left: 1%;
         padding-top: 5%;
+        text-align: center;
+    }
+
+    .channelButton {
+        padding: 2%;
+        width: 7rem;
     }
 
     .container {
