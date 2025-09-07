@@ -4,6 +4,8 @@ body {
     font-family: Monospace;
     color: white;
     background-color: black;
+    height: 100%;
+    width: 100%;
 }
 
 .header {
@@ -11,6 +13,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    min-height: 20%;
 }
 
 .logoBox {
@@ -34,20 +37,6 @@ body {
 
 .tvChannels {
     width: 50%;
-}
-
-@media (max-width: 600px) {
-    .header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .logoBox,
-    .channelsBox {
-        flex: unset;
-        width: 100%;
-        padding-top: 5%;
-    }
 }
 
 h2 {
@@ -75,13 +64,12 @@ p {
 .container {
     display: flex;
     width: 100%;
-    text-align: left;
+    text-align: center;
     font-family: Monospace;
-
 }
 
-.leftPanel {
-    width: 29%;
+.agendaContainer {
+    width: 50%;
     margin: 1%;
     display: table-cell;
     vertical-align: middle;
@@ -90,11 +78,12 @@ p {
 }
 
 .mainContent {
-    width: 70%;
+    width: 90%;
     margin: 1%;
     display: table-cell;
     vertical-align: middle;
     font-family: Monospace;
+    text-align: center;
 }
 
 .channelButton {
@@ -168,6 +157,7 @@ a:visited {
     font-size: clamp(0.4rem, 0.5rem + 1vw, 1rem);
     text-align: left;
     vertical-align: middle;
+    width: auto;
 }
 
 .activeChannel {
@@ -185,5 +175,40 @@ a:visited {
 
     100% {
         -webkit-box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}
+
+/* mobile screen adaptations */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .logoBox,
+    .channelsBox {
+        flex: unset;
+        width: 100%;
+        padding-top: 5%;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mainContent {
+        height: 200px;
+        overflow: auto;
+        flex: unset;
+        width: 90%;
+        padding-top: 5%;
+    }
+
+    .agendaContainer {
+        width: 100%;
     }
 }

@@ -54,12 +54,26 @@ small,
 }
 
 @media (max-width: 600px) {
+
+    .d-flex {
+        padding: 0.5rem;
+        display: block;
+    }
+
     .air-time-image {
-        width: 50%;
+        width: 70%;
     }
 
     .flex-shrink-0 {
-        width: 30%;
+        width: 20%;
+    }
+
+    .p-3 {
+        font-size: clamp(0.3rem, 0.5rem + 0.7vw, 0.5rem);
+    }
+
+    .mb-3 {
+        padding: 0.1rem;
     }
 }
 
