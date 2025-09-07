@@ -101,7 +101,7 @@ function playTV(tvChannelName) {
     }
 
     video.play().catch(err => {
-        alert("PLAYINH ERROR:", err);
+        console.log("PLAYING ERROR:", err);
     });
 
 }
