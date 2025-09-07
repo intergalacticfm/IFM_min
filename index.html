@@ -12,26 +12,39 @@
 </head>
 
 <body>
-    <h1><img src="icon100.png" alt="IFM logo"></h1>
-    <div class="topLinks">
-        <a href="https://videohotmix.net/" target="_blank">Archives</a>
-        <a href="https://www.instagram.com/intergalacticfm/" target="_blank">Instagram</a>
-        <a href="https://www.youtube.com/channel/UCyiBzmL0FAJlupsJJg5BNzQ" target="_blank">Youtube</a>
-        <a href="https://www.paypal.com/donate/?hosted_button_id=MV4HVU2D4W3LJ" target="_blank">DONATE</a>
+    <div class="header">
+        <div class="logoBox">
+            <img src="icon100.png" alt="IFM logo">
+            <div class="topLinks">
+                <a href="https://videohotmix.net/" target="_blank">Archives</a>
+                <a href="https://www.instagram.com/intergalacticfm/" target="_blank">Instagram</a>
+                <a href="https://www.youtube.com/channel/UCyiBzmL0FAJlupsJJg5BNzQ" target="_blank">Youtube</a>
+                <a href="https://www.paypal.com/donate/?hosted_button_id=MV4HVU2D4W3LJ" target="_blank">DONATE</a>
+            </div>
+        </div>
+        <div class="channelsBox">
+            <div class="radioChannels">
+                RADIO:<br>
+                <button class="channelButton" id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button><br>
+                <button class="channelButton" id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button><br>
+                <button class="channelButton" id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
+            </div>
+            <div class="tvChannels">
+                TV:<br>
+                <button class="channelButton" id="cbstv" onclick="playTV('cbstv');">CBS TV</button><br>
+                <button class="channelButton" id="mtv" onclick="playTV('mtv');">Murdercapital TV</button>
+            </div>
+        </div>
+
     </div>
     <br>
 
 
     <div class="container">
         <div class="leftPanel">
-            <button class="channelButton" id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button>
-            <button class="channelButton" id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button>
-            <button class="channelButton" id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
-            <button class="channelButton" id="cbstv" onclick="playTV('cbstv');">CBS TV</button>
-            <button class="channelButton" id="mtv" onclick="playTV('mtv');">Murdercapital TV</button>
             <br><br>PARTY AGENDA:<br>
             <div id="party_agenda" class="rawidget"></div>
-            <br><br>RADIO AGENDA:<br>
+            <br>RADIO AGENDA:<br>
             <div id="radio_agenda" class="rawidget"></div>
         </div>
         <div class="mainContent">

@@ -27,6 +27,7 @@ const AUDIO_EVENT_PAUSE_NAME = 'pause';
 const AUDIO_EVENT_ERROR_NAME = 'error';
 const LOADING_DIV_ID = 'loading';
 const LOADING_MSG = 'Loading...';
+const ACTIVE_CHANNEL_CLASS = 'activeChannel';
 const VJS_PLAY_CONTROL_CLASS = 'vjs-play-control';
 const VJS_PLAYING_CLASS = 'vjs-playing';
 const LINE_BREAK = '<br>';
@@ -48,7 +49,7 @@ const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
 const PARTY_AGENDA_ID = 'party_agenda';
 const RADIO_AGENDA_ID = 'radio_agenda';
 const PARTY_AGENDA_WIDGET =
-    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height="100%" width="100%" style="border:none" />';
+    '<iframe src="https://ra.co/promoters/167717/widget/events?theme=dark" height = "100%" width="100%" style="border:none" />';
 const RADIO_AGENDA_WIDGET =
     'upcoming...';
 
@@ -72,6 +73,7 @@ function playChannel(channelNumber) {
     feedHTML(LOADING_DIV_ID, LOADING_MSG);
     var source = document.getElementById(AUDIO_PLAYER_SOURCE_ID);
     var channelElement = document.getElementById(channelsId[channelNumber - 1]);
+    channelElement.classList.add(ACTIVE_CHANNEL_CLASS);
     source.src = channelElement.getAttribute(CHANNEL_DATA_VALUE_KEY);
     audio.load();
     audio.play();
@@ -84,6 +86,8 @@ var ongoingHLS;
 
 function playTV(tvChannelName) {
     reset();
+    var channelElement = document.getElementById(tvChannelName);
+    channelElement.classList.add(ACTIVE_CHANNEL_CLASS);
     showElement(VIDEO_PLAYER_DIV_ELEMENT);
     var videoSrc = tvChannelName === 'mtv' ? MTV_PLAYLIST : CBS_TV_PLAYLIST;
 
@@ -191,6 +195,11 @@ function feedNowPlaying(value) {
 }
 
 function reset() {
+    var allChannelButtons = document.getElementsByClassName('channelButton');
+    Array.prototype.forEach.call(allChannelButtons, function (button) {
+        button.classList.remove(ACTIVE_CHANNEL_CLASS);
+    });
+
     clearTimeout(nowPlayingRequestTimer);
     audio.controls = EMPTY_VAL;
     stopVideo();
