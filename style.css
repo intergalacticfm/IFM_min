@@ -1,12 +1,7 @@
-@font-face {
-    font-family: 'Michroma-Regular';
-    src: url('Michroma-Regular.ttf');
-}
-
 body {
     font-size: clamp(0.4rem, 0.5rem + 1vw, 1.5rem);
     text-align: left;
-    font-family: Michroma-Regular;
+    font-family: Monospace;
     color: white;
     background-color: black;
 }
@@ -23,7 +18,7 @@ h2 {
 
 h5 {
     display: table;
-    margin: 0 auto;
+    text-align: left;
 }
 
 p {
@@ -34,7 +29,7 @@ p {
     width: 100%;
     text-align: center;
     font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
-    font-family: Michroma-Regular;
+    font-family: Monospace;
 
 }
 
@@ -42,7 +37,7 @@ p {
     display: flex;
     width: 100%;
     text-align: left;
-    font-family: Michroma-Regular;
+    font-family: Monospace;
 
 }
 
@@ -51,7 +46,7 @@ p {
     margin: 1%;
     display: table-cell;
     vertical-align: middle;
-    font-family: Michroma-Regular;
+    font-family: Monospace;
 
 }
 
@@ -60,7 +55,7 @@ p {
     margin: 1%;
     display: table-cell;
     vertical-align: middle;
-    font-family: Michroma-Regular;
+    font-family: Monospace;
 
 }
 
@@ -71,9 +66,8 @@ p {
     background-color: black;
     text-align: left;
     font-size: clamp(0.2rem, 0.4rem + 0.6vw, 4rem);
-    font-family: Michroma-Regular;
+    font-family: Monospace;
     margin: 1%;
-    cursor: crosshair;
 }
 
 #cbs {
