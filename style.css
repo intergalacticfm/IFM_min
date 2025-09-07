@@ -206,7 +206,8 @@ a:visited {
 
     .channelButton {
         padding: 2%;
-        width: 7rem;
+        width: 10rem;
+        text-align: center;
     }
 
     .container {
