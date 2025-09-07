@@ -197,7 +197,6 @@ function feedNowPlaying(value) {
             }
         }
         feedHTML(SCROBBLER_SHADOW_ID, main);
-        //feedHTML(NOW_PLAYING_DIV_EXT_ID, otherFieldsProcessed);
         extractCoverFromChannelContent();
     } else {
         feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
