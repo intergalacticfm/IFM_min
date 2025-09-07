@@ -217,14 +217,17 @@ a:visited {
     }
 
     .mainContent {
-        height: 250px;
-        overflow: auto;
         flex: unset;
         text-align: center;
         width: 98%;
         padding: 1%;
         max-width: 100%;
         box-sizing: border-box;
+    }
+
+    .nowPlaying {
+        height: 250px;
+        overflow: auto;
     }
 
     .agendaContainer {
