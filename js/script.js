@@ -8,16 +8,16 @@ var previousTrackTitle = EMPTY_VAL;
 window.onload = function () {
     // any init function needed at the load
     playTV('cbstv');
-
-    feedHTML(PARTY_AGENDA_ID, PARTY_AGENDA_WIDGET);
-    feedHTML(RADIO_AGENDA_ID, RADIO_AGENDA_WIDGET);
+    showElement(document.getElementById(AGENDA_CONTAINER_ID));
+    //feedHTML(PARTY_AGENDA_ID, PARTY_AGENDA_WIDGET);
+    //feedHTML(RADIO_AGENDA_ID, RADIO_AGENDA_WIDGET);
 
 }
 
 function playChannel(channelNumber) {
     reset();
-    showElement(AUDIO_PLAYER_DIV_ELEMENT);
     feedHTML(LOADING_DIV_ID, LOADING_MSG);
+    showElement(AUDIO_PLAYER_DIV_ELEMENT);
     var source = document.getElementById(AUDIO_PLAYER_SOURCE_ID);
     var channelElement = document.getElementById(channelsId[channelNumber - 1]);
     channelElement.classList.add(ACTIVE_CHANNEL_CLASS);

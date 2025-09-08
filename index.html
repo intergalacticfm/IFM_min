@@ -23,48 +23,43 @@
                 <a href="https://www.paypal.com/donate/?hosted_button_id=MV4HVU2D4W3LJ" target="_blank">DONATE</a>
             </div>
         </div>
-        <div class="channelsBox">
-            <div class="radioChannels">
-                RADIO:<br>
-                <button class="channelButton" id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button><br>
-                <button class="channelButton" id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button><br>
-                <button class="channelButton" id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
-            </div>
-            <div class="tvChannels">
-                TV:<br>
-                <button class="channelButton" id="cbstv" onclick="playTV('cbstv');">CBS TV</button><br>
-                <button class="channelButton" id="mtv" onclick="playTV('mtv');">Murdercapital TV</button>
-            </div>
-        </div>
-
     </div>
     <br>
+    <div class="channelsBox">
+        <div class="radioChannels">
+            RADIO:<br>
+            <button class="channelButton" id="cbs" data-value="https://radio.intergalactic.fm/x" onclick="playChannel(1,'cbs');">Cybernetic Broadcasting System</button><br>
+            <button class="channelButton" id="df" data-value="https://radio.intergalactic.fm/xx" onclick="playChannel(2,'df');">Disco Fetish</button><br>
+            <button class="channelButton" id="tdm" data-value="https://radio.intergalactic.fm/xxx" onclick="playChannel(3,'tdm');">The Dream Machine</button>
+        </div>
+        <div class="tvChannels">
+            TV:<br>
+            <button class="channelButton" id="cbstv" onclick="playTV('cbstv');">CBS TV</button><br>
+            <button class="channelButton" id="mtv" onclick="playTV('mtv');">Murdercapital TV</button>
+        </div>
+    </div>
 
-
-    <div class="container">
-        <div class="mainContent">
+    <div class="mainContent">
+        <div id="audioPlayerDiv" style="display: none">
             <div id="loading"></div>
             <audio id="audioPlayer">
                 <source id="audioPlayerSource" src="" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
-            <div id="audioPlayerDiv" style="display: none">
-                <div id="shadowScrobblerId" style="visibility: hidden"></div>
-                <div id="stationMessage" class="stationMessage"></div>
-                <div id="nowPlaying" class="nowPlaying">
-                </div>
-            </div>
-            <div id="videoPlayerDiv" style="display: none">
-                <video id="videoPlayer" controls muted autoplay playsinline width="100%" height="100%"></video>
+            <div id="stationMessage" class="stationMessage"></div>
+            <div id="nowPlaying" class="nowPlaying">
             </div>
         </div>
-        <div class="agendaContainer">
-            PARTY AGENDA:<br>
-            <div id="party_agenda" class="rawidget"></div>
-            RADIO AGENDA:<br>
-            <div id="radio_agenda" class="rawidget"></div>
+        <div id="videoPlayerDiv" style="display: none">
+            <video id="videoPlayer" controls muted autoplay playsinline width="100%" height="100%"></video>
+        </div>
+        <div id="agendaContainer" class="agendaContainer" style="display: none">
+            <div id="party_agenda" class="rawidget">PARTY AGENDA:<br>waiting for the API to be implemented</div>
+            <div id="radio_agenda" class="rawidget">RADIO AGENDA:<br>waiting for the API to be implemented</div>
         </div>
     </div>
+    <div id="shadowScrobblerId" style="visibility: hidden"></div>
+
     <script src="js/hls.js@latest.js@latest"></script>
     <script src="js/constants.js"></script>
     <script src="js/script.js"></script>

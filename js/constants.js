@@ -46,12 +46,9 @@ const MEDIA_ERR_SRC_NOT_SUPPORTED_CODE_MSG = 'NOT SUPPORTED';
 const TRACK_META_CLASS = 'track-meta';
 const AUDIO_PLAYER_DIV_ELEMENT = document.getElementById('audioPlayerDiv');
 const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
+const AGENDA_CONTAINER_ID = 'agendaContainer';
 const PARTY_AGENDA_ID = 'party_agenda';
 const RADIO_AGENDA_ID = 'radio_agenda';
-const PARTY_AGENDA_WIDGET =
-    'waiting for the API to be implemented';
-const RADIO_AGENDA_WIDGET =
-    'waiting for the API to be implemented';
 const CBS_LOGO = "img/cbs.png";
 const DF_LOGO = "img/df.png";
 const TDM_LOGO = "img/tdm.png";
