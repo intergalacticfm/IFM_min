@@ -1,3 +1,31 @@
+/* social media links */
+.fa {
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    font-size: clamp(0.4rem, 0.4rem + 0.6vw, 4rem);
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+
+.fa-youtube {
+    background: black;
+    color: white;
+}
+
+.fa-instagram {
+    background: black;
+    color: white;
+}
+
+.fa-android {
+    background: black;
+    color: white;
+}
+
 /* now playing inherited css */
 
 .d-flex {

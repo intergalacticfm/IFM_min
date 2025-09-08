@@ -1,6 +1,6 @@
 const audio = document.getElementById('audioPlayer');
 const video = document.getElementById('videoPlayer');
-const NOW_PLAYING_REQUEST_TIMEOUT_MSEC = 5000;
+const NOW_PLAYING_REQUEST_TIMEOUT_MSEC = 8000;
 const NOW_PLAYING_REQUEST_PREFIX = 'https://www.intergalactic.fm/now-playing?channel=';
 const NOW_PLAYING_PICTURE_REQUEST_PREFIX = 'https://www.intergalactic.fm/channel-content/';
 const NOW_PLAYING_DIV_ID = 'nowPlaying';
