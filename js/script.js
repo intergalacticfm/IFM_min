@@ -198,8 +198,9 @@ function manageError(code, message) {
     if (errorMessage) {
         errorMessage += message;
     }
-    feedHTML(NOW_PLAYING_DIV_ID, errorMessage);
-    feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
+    console.log(errorMessage);
+    // feedHTML(NOW_PLAYING_DIV_ID, errorMessage);
+    // feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
 }
 
 /* cover image is fetched from IFM server (constants.NOW_PLAYING_PICTURE_REQUEST_PREFIX) as pure HTML, so we need parsing to extract just the image we need to display */
