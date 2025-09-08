@@ -108,7 +108,6 @@ async function getNowPlaying() {
                     removeWebConnectorDependencies();
                     addWebConnectorDependencies();
                     previousTrackTitle = title;
-                    setNavigatorMetadata(trackMetadata);
                 }
             }
         } catch (error) {
@@ -122,33 +121,6 @@ async function getNowPlaying() {
 
 function feedStationMessage(stationMessage) {
     feedHTML(STATION_MESSAGE_ID, '<img src="' + STATION_LOGOS[selectedChannel - 1] + '" style="height: 10%; width: 10%; object-fit: contain; padding:2%"/>' + stationMessage);
-}
-
-/* this allows devices with media commands to get track metadatas */
-function setNavigatorMetadata(metadata) {
-    const trackMetadatas = metadata.title.split(METADATA_SPLIT_CHAR);
-    var notCorrupted = trackMetadatas[0].includes(ARTIST_TITLE_SPLIT_STRING);
-    var manydash = (trackMetadatas[0].match(/-/g) || []).length != 1;
-    var artist_title = trackMetadatas[0];
-    var artist = artist_title;
-    var title = "";
-    if (notCorrupted && !manydash) {
-        artist = artist_title.split(ARTIST_TITLE_SPLIT_STRING)[0].trim();
-        title = artist_title.split(ARTIST_TITLE_SPLIT_STRING)[1].trim();
-    }
-    var album = trackMetadatas[1] ? trackMetadatas[1].trim() : EMPTY_VAL;
-    var coverPath = STATION_LOGOS[selectedChannel];
-    if ("mediaSession" in navigator) {
-        // iOS metadata update
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: title,
-            artist: artist,
-            album: album,
-            artwork: [{
-                src: coverPath
-                }]
-        });
-    }
 }
 
 // populate the now playing html
