@@ -2,6 +2,8 @@ var currentNowPlayingUrl;
 var selectedChannel;
 var nowPlayingRequestTimer;
 var channelContentUrl;
+var previousExtractedCoverHTML = EMPTY_VAL;
+var previousTrackTitle = EMPTY_VAL;
 
 window.onload = function () {
     // any init function needed at the load
@@ -91,7 +93,6 @@ audio.addEventListener(AUDIO_EVENT_PAUSE_NAME, function (e) {
 });
 
 // request now playing from IFM server every NOW_PLAYING_REQUEST_TIMEOUT_MSEC
-var previousTrackTitle = EMPTY_VAL;
 async function getNowPlaying() {
     if (selectedChannel) { // if playing
         try {
@@ -105,6 +106,7 @@ async function getNowPlaying() {
                     // new track
                     previousTrackTitle = title;
                     feedNowPlaying(title);
+                    extractCoverFromChannelContent(1);
                     removeWebConnectorDependencies();
                     addWebConnectorDependencies();
                     previousTrackTitle = title;
@@ -137,7 +139,6 @@ function feedNowPlaying(value) {
             }
         }
         feedHTML(SCROBBLER_SHADOW_ID, main);
-        extractCoverFromChannelContent();
     } else {
         feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
         feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
@@ -161,6 +162,7 @@ function reset() {
     feedHTML(STATION_MESSAGE_ID, EMPTY_VAL);
     selectedChannel = EMPTY_VAL;
     previousTrackTitle = EMPTY_VAL;
+    previousExtractedCoverHTML = EMPTY_VAL;
     removeWebConnectorDependencies();
     hideElement(VIDEO_PLAYER_DIV_ELEMENT);
     hideElement(AUDIO_PLAYER_DIV_ELEMENT);
@@ -202,15 +204,35 @@ function manageError(code, message) {
     feedHTML(NOW_PLAYING_DIV_EXT_ID, EMPTY_VAL);
 }
 
-async function extractCoverFromChannelContent() {
+/* cover image is fetched from IFM server (constants.NOW_PLAYING_PICTURE_REQUEST_PREFIX) as pure HTML, so we need parsing to extract just the image we need to display */
+async function extractCoverFromChannelContent(attempt) {
+    if (attempt >= 10) {
+        // recursion guard to avoid infinite loops
+        return;
+    }
     var response = await fetch(NOW_PLAYING_PICTURE_REQUEST_PREFIX + selectedChannel);
     var body = await response.text();
-    //var startOfCoverImgIndex = body.indexOf('<img');
-    //var endOfCoverImgIndex = body.indexOf('alt=""/>') + 10;
-    //var extractedCoverHTML = body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
-    //console.log(extractedCoverHTML);
+    var extractedCoverHTML = extractCoverFromHTML(body);
+    if (extractedCoverHTML != previousExtractedCoverHTML) {
+        // if previous known cover is different than the new one, we have the updated cover for the playing track */
+        previousExtractedCoverHTML = extractedCoverHTML;
+    } else {
+        //console.log("STILL OLD ARTWORK!");
+        /* main website updates the cover with some delay, so we might request it multiple times before getting the updated one */
+        //console.log("RETRYING...");
+        setTimeout(function () {
+            extractCoverFromChannelContent(attempt + 1);
+        }, 2000);
+
+    }
     var cleantBody = body.replaceAll('now playing', '').replaceAll('airtime', '').replaceAll('mb-4', '');
     feedHTML(NOW_PLAYING_DIV_ID, cleantBody);
+}
+
+function extractCoverFromHTML(body) {
+    var startOfCoverImgIndex = body.indexOf('<img');
+    var endOfCoverImgIndex = body.indexOf('alt=""/>') + 10;
+    return body.substring(startOfCoverImgIndex, endOfCoverImgIndex);
 }
 
 /* following two functions adds/remove fake classes to the player to keep the web scrobble connector compatibility 
