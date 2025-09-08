@@ -158,8 +158,6 @@ function reset() {
     stopVideo();
     stopAudio();
     removeWebConnectorDependencies();
-    feedHTML(NOW_PLAYING_DIV_ID, EMPTY_VAL);
-    feedHTML(STATION_MESSAGE_ID, EMPTY_VAL);
     selectedChannel = EMPTY_VAL;
     previousTrackTitle = EMPTY_VAL;
     previousExtractedCoverHTML = EMPTY_VAL;
