@@ -8,7 +8,7 @@ var previousTrackTitle = EMPTY_VAL;
 window.onload = function () {
     // any init function needed at the load
     playTV('cbstv');
-    showElement(document.getElementById(AGENDA_CONTAINER_ID));
+
     //feedHTML(PARTY_AGENDA_ID, PARTY_AGENDA_WIDGET);
     //feedHTML(RADIO_AGENDA_ID, RADIO_AGENDA_WIDGET);
 

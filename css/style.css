@@ -57,18 +57,6 @@ h2 {
     font-family: Monospace;
 }
 
-.agendaContainer {
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    /* li separa a sx e dx */
-    align-items: center;
-    font-family: Monospace;
-    font-size: clamp(0.4rem, 0.4rem + 0.6vw, 1rem);
-    margin: 0 auto;
-    padding-top: 5%;
-}
-
 .mainContent {
     padding-top: 5%;
     margin: 0 auto;
@@ -138,15 +126,6 @@ a:visited {
     color: white;
 }
 
-.rawidget {
-    width: 100%;
-    border-color: white;
-    border-style: solid;
-    border-width: 2px;
-    background-color: black;
-    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 1rem);
-}
-
 .stationMessage {
     display: flex;
     align-items: center;
@@ -162,6 +141,26 @@ a:visited {
 
 .activeChannel {
     animation: pulse 2s infinite;
+}
+
+.agendaContainer {
+    width: 70%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-family: Monospace;
+    font-size: clamp(0.4rem, 0.4rem + 0.6vw, 1rem);
+    margin: 0 auto;
+    padding-top: 5%;
+}
+
+.rawidget {
+    width: 50%;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    background-color: black;
+    font-size: clamp(0.2rem, 0.4rem + 0.6vw, 1rem);
 }
 
 @-webkit-keyframes pulse {
