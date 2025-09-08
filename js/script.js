@@ -1,64 +1,3 @@
-const audio = document.getElementById('audioPlayer');
-const video = document.getElementById('videoPlayer');
-const NOW_PLAYING_REQUEST_TIMEOUT_MSEC = 5000;
-const NOW_PLAYING_REQUEST_PREFIX = 'https://www.intergalactic.fm/now-playing?channel=';
-const NOW_PLAYING_PICTURE_REQUEST_PREFIX = 'https://www.intergalactic.fm/channel-content/';
-const NOW_PLAYING_DIV_ID = 'nowPlaying';
-const SCROBBLER_SHADOW_ID = 'shadowScrobblerId';
-const TRACK_META_DIV_ID = 'track-meta';
-const NOW_PLAYING_DIV_EXT_ID = 'nowPlayingExt';
-const NOW_PLAYING_COVER_DIV_ID = 'nowPlayingCover';
-const AUDIO_PLAYER_SOURCE_ID = 'audioPlayerSource';
-const VIDEO_PLAYER_SOURCE_ID = 'videoPlayerSource';
-const CBS_TV_PLAYLIST = 'https://intergalactic.tv/live/smil:tv.smil/playlist.m3u8';
-const MTV_PLAYLIST = 'https://intergalactic.tv/live/smil:mtv.smil/playlist.m3u8';
-const ERROR_MSG = 'Error: ';
-const STYLE = 'style';
-const NO_INFO_MSG = 'No info available';
-const META_TAGS_SPLIT_CHAR = '|';
-const CBS_CHANNEL_ID = 'cbs';
-const DF_CHANNEL_ID = 'df';
-const TDM_CHANNEL_ID = 'tdm';
-const channelsId = ['cbs', 'df', 'tdm'];
-const CHANNEL_DATA_VALUE_KEY = 'data-value';
-const AUDIO_CONTROLS_KEY = 'controls';
-const AUDIO_EVENT_PLAYING_NAME = 'playing';
-const AUDIO_EVENT_PAUSE_NAME = 'pause';
-const AUDIO_EVENT_ERROR_NAME = 'error';
-const LOADING_DIV_ID = 'loading';
-const LOADING_MSG = 'Loading...';
-const ACTIVE_CHANNEL_CLASS = 'activeChannel';
-const VJS_PLAY_CONTROL_CLASS = 'vjs-play-control';
-const VJS_PLAYING_CLASS = 'vjs-playing';
-const LINE_BREAK = '<br>';
-const EMPTY_VAL = '';
-const ERROR_MSG_TITLE = 'Error: ';
-const ERROR_UNKNOWN_MSG = 'Unknown';
-const ERROR_REASON_TITLE = 'Reason: ';
-const MEDIA_ERR_ABORTED_CODE = 1;
-const MEDIA_ERR_NETWORK_CODE = 2;
-const MEDIA_ERR_DECODE_CODE = 3;
-const MEDIA_ERR_SRC_NOT_SUPPORTED_CODE = 4;
-const ERR_ABORTED_MSG = 'ABORTED';
-const MEDIA_ERR_NETWORK_CODE_MSG = 'NETWORK';
-const MEDIA_ERR_DECODE_CODE_MSG = 'DECODE';
-const MEDIA_ERR_SRC_NOT_SUPPORTED_CODE_MSG = 'NOT SUPPORTED';
-const TRACK_META_CLASS = 'track-meta';
-const AUDIO_PLAYER_DIV_ELEMENT = document.getElementById('audioPlayerDiv');
-const VIDEO_PLAYER_DIV_ELEMENT = document.getElementById('videoPlayerDiv');
-const PARTY_AGENDA_ID = 'party_agenda';
-const RADIO_AGENDA_ID = 'radio_agenda';
-const PARTY_AGENDA_WIDGET =
-    'waiting for the API to be implemented';
-const RADIO_AGENDA_WIDGET =
-    'waiting for the API to be implemented';
-const CBS_LOGO = "img/cbs.png";
-const DF_LOGO = "img/df.png";
-const TDM_LOGO = "img/tdm.png";
-const MTV_LOGO = "img/mtv.png";
-const STATION_LOGOS = [CBS_LOGO, DF_LOGO, TDM_LOGO, MTV_LOGO];
-const STATION_MESSAGE_ID = 'stationMessage';
-
 var currentNowPlayingUrl;
 var selectedChannel;
 var nowPlayingRequestTimer;
@@ -96,7 +35,7 @@ function playTV(tvChannelName) {
     channelElement.classList.add(ACTIVE_CHANNEL_CLASS);
     showElement(VIDEO_PLAYER_DIV_ELEMENT);
     var videoSrc = tvChannelName === 'mtv' ? MTV_PLAYLIST : CBS_TV_PLAYLIST;
-
+    /* compatibility with safari/ios */
     if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = videoSrc;
     } else if (Hls.isSupported()) {
@@ -107,7 +46,7 @@ function playTV(tvChannelName) {
     }
 
     video.play().catch(err => {
-        console.log("PLAYING ERROR:", err);
+        manageError(err);
     });
 
 }
@@ -168,6 +107,7 @@ async function getNowPlaying() {
                     removeWebConnectorDependencies();
                     addWebConnectorDependencies();
                     previousTrackTitle = title;
+                    setNavigatorMetadata(trackMetadata);
                 }
             }
         } catch (error) {
@@ -181,6 +121,33 @@ async function getNowPlaying() {
 
 function feedStationMessage(stationMessage) {
     feedHTML(STATION_MESSAGE_ID, '<img src="' + STATION_LOGOS[selectedChannel - 1] + '" style="height: 10%; width: 10%; object-fit: contain; padding:2%"/>' + stationMessage);
+}
+
+/* this allows devices with media commands to get track metadatas */
+function setNavigatorMetadata(metadata) {
+    const trackMetadatas = metadata.title.split(METADATA_SPLIT_CHAR);
+    var notCorrupted = trackMetadatas[0].includes(ARTIST_TITLE_SPLIT_STRING);
+    var manydash = (trackMetadatas[0].match(/-/g) || []).length != 1;
+    var artist_title = trackMetadatas[0];
+    var artist = artist_title;
+    var title = "";
+    if (notCorrupted && !manydash) {
+        artist = artist_title.split(ARTIST_TITLE_SPLIT_STRING)[0].trim();
+        title = artist_title.split(ARTIST_TITLE_SPLIT_STRING)[1].trim();
+    }
+    var album = trackMetadatas[1] ? trackMetadatas[1].trim() : EMPTY_VAL;
+    var coverPath = STATION_LOGOS[selectedChannel];
+    if ("mediaSession" in navigator) {
+        // iOS metadata update
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: title,
+            artist: artist,
+            album: album,
+            artwork: [{
+                src: coverPath
+                }]
+        });
+    }
 }
 
 // populate the now playing html
