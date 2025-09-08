@@ -57,3 +57,4 @@ const STATION_LOGOS = [CBS_LOGO, DF_LOGO, TDM_LOGO, MTV_LOGO];
 const STATION_MESSAGE_ID = 'stationMessage';
 const METADATA_SPLIT_CHAR = '|';
 const ARTIST_TITLE_SPLIT_STRING = ' - ';
+const PARTY_AGENDA_URL = 'https://intergalactic.fm/sd/events.html';

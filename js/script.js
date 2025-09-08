@@ -8,10 +8,21 @@ var previousTrackTitle = EMPTY_VAL;
 window.onload = function () {
     // any init function needed at the load
     playTV('cbstv');
+    fetchPartyAgenda();
+}
 
-    //feedHTML(PARTY_AGENDA_ID, PARTY_AGENDA_WIDGET);
-    //feedHTML(RADIO_AGENDA_ID, RADIO_AGENDA_WIDGET);
+async function fetchPartyAgenda() {
+    const response = await fetch(PARTY_AGENDA_URL);
+    var body = await response.text();
+    const temp = document.createElement("div");
+    temp.innerHTML = body;
+    const imgs = temp.querySelectorAll("img");
+    // salva tutti i src in un'unica stringa separata da virgola
+    const imgString = Array.from(imgs)
+        .map(img => img.src || img.getAttribute("src"))
+        .join(", ");
 
+    feedHTML(PARTY_AGENDA_ID, "<img src=" + imgString + " height='120px'/>");
 }
 
 function playChannel(channelNumber) {
