@@ -103,6 +103,7 @@ async function getNowPlaying() {
                 feedStationMessage(stationMessage);
                 if (previousTrackTitle != title) {
                     // new track
+                    previousTrackTitle = title;
                     feedNowPlaying(title);
                     removeWebConnectorDependencies();
                     addWebConnectorDependencies();
