@@ -65,7 +65,7 @@ small,
     }
 
     .air-time-image {
-        width: 70%;
+        width: 90%;
     }
 
     .flex-shrink-0 {
@@ -82,7 +82,7 @@ small,
 }
 
 .flag {
-    background-image: url(flag-icons.png);
+    background-image: url(../img/flag-icons.png);
     background-repeat: no-repeat;
     width: 16px;
     min-width: 16px;
