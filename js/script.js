@@ -55,16 +55,15 @@ function stopAudio() {
 }
 
 function stopVideo() {
-    if (video.currentTime > 0) {
-        video.pause();
-        video.currentTime = 0;
-        if (ongoingHLS) {
-            ongoingHLS.destroy();
-        } else {
-            video.removeAttribute("src");
-            video.load();
-        }
+    video.pause();
+    video.currentTime = 0;
+    if (ongoingHLS) {
+        ongoingHLS.destroy();
+    } else {
+        video.removeAttribute("src");
+        video.load();
     }
+
 }
 
 // when the audio player has finished loading and is ready to play
