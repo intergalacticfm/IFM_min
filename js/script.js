@@ -95,7 +95,7 @@ async function getNowPlaying() {
             const trackMetadata = await response.json();
             if (trackMetadata) {
                 var title = trackMetadata.title;
-                var stationMessage = trackMetadata.station_message[0].value;
+                var stationMessage = trackMetadata.station_message;
                 feedStationMessage(stationMessage);
                 if (previousTrackTitle != title) {
                     // new track
