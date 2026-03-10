@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Intergalactic FM</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta charset=" UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Radio">
+    <link rel="apple-touch-icon" href="/img/icon.png">
+</head>
+
+<body>
+    <div class="header">
+        <!-- Stop button -->
+        <button id="stopButton" class="close">↵</button>
+        <!-- Header -->
+        <img id="headerImage" src="img/icon100.png" alt="IFM logo">
+    </div>
+    <div class="scrollTextContainer">
+        <div class="ifmxScrollText"></div>
+    </div>
+    <div id="container" class="container">
+        <!-- Channel list -->
+        <div class="channels">
+            <button id="cbsChannelButton" class="channel">
+                <div class="channelRow">
+                    <img class="channelIcon" src="img/cbs.png" />
+                    <div class="channelName">
+                        CYBERNETIC BROADCASTING SYSTEM
+                    </div>
+                </div>
+            </button>
+            <p></p>
+            <button id="dfChannelButton" class="channel">
+                <div class="channelRow">
+                    <img class="channelIcon" src="img/df.png" />
+                    <div class="channelName">
+                        DISCO FETISH
+                    </div>
+                </div>
+            </button>
+            <p></p>
+            <button id="tdmChannelButton" class="channel">
+                <div class="channelRow">
+                    <img class="channelIcon" src="img/tdm.png" />
+                    <div class="channelName">
+                        THE DREAM MACHINE
+                    </div>
+                </div>
+            </button>
+        </div>
+        <!-- Message box -->
+        <div id="messageBox">
+        </div>
+        <!-- Links -->
+        <div class="links">
+            <button id="websiteRedirect" class="channel">@ WEBSITE</button>
+            <button id="donateRedirect" class="channel">$ DONATE</button>
+            <button id="archiveRedirect" class="channel">[-] ARCHIVE</button>
+        </div>
+    </div>
+
+    <!-- Now Playing modal -->
+    <div id="trackInfoModal" class="modal">
+        <div id="nowPlaying"></div>
+        <div id="nowPlayingExt"></div>
+        <div id="nowPlayingCover"></div>
+    </div>
+
+    <!-- HTML5 audio player (hidden) -->
+    <audio hidden id="player" src="" type="audio/mpeg" preload="auto" playsinline />
+
+    <!-- scripts -->
+    <!-- cordova.js must be the first import and this is required for android plugin, it doesn't have to exist in the www folder, cordova lib loads it at runtime -->
+    <script>
+        if (window.location.protocol === 'file:' || window.cordova) {
+            var script = document.createElement('script');
+            script.src = 'cordova.js';
+            document.head.appendChild(script);
+        }
+
+    </script>
+    <script type="module" src="js/constants.js"></script>
+    <script type="module" src="js/audio.js"></script>
+    <script type="module" src="js/index.js"></script>
+
+</body>
+
+</html>
