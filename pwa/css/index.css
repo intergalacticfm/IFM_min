@@ -1,0 +1,285 @@
+@font-face {
+    font-family: 'Michroma';
+    src: url('../fonts/Michroma-Regular.woff2') format('woff2'),
+        url('../fonts/Michroma-Regular.woff') format('woff'),
+        url('../fonts/Michroma-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+html,
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Michroma', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    overscroll-behavior: none;
+    letter-spacing: normal;
+    margin: 0;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    height: 100vh;
+    /* font rendering consistency */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: 0.08em;
+    font-size: clamp(1rem, 0.9rem + 0.6vw, 1.5rem);
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button.is-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+div {
+    max-width: 100%;
+}
+
+.header {
+    position: relative;
+    min-height: 15vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: env(safe-area-inset-top, 0px);
+    background-color: black;
+    box-sizing: border-box;
+}
+
+#headerImage {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 15vh;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: red;
+    background-color: black;
+    border: 0;
+
+    font-size: clamp(2.4rem, 2rem + 1vw, 3.2rem);
+    font-weight: 600;
+
+    width: 64px;
+    height: 64px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* scrolling text */
+.scrollTextContainer {
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    margin: 1vw auto;
+    background: black;
+    color: red;
+    border-radius: 12px;
+    height: 5vh;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: var(--fs-sm);
+}
+
+.ifmxScrollText {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll 10s linear infinite;
+    /* force compositing layer */
+    will-change: transform;
+    /* workaround for WebKit bug */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.channelRow {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.scrollTextContainer,
+.links td {
+    letter-spacing: 0.06em;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes l1 {
+    to {
+        clip-path: inset(0 -34% 0 0)
+    }
+}
+
+#audioPlayer {
+    visibility: hidden;
+}
+
+.container {
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-height: 50vh;
+}
+
+.channel:not(:active) {
+    /* now keep red background for 1s */
+    transition: background-color 2000ms step-end;
+}
+
+.channel:active {
+    background: red;
+}
+
+.channels {
+    box-sizing: border-box;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    max-height: 50vh;
+}
+
+.channel {
+    width: 100%;
+    color: white;
+    background-color: black;
+    border-radius: 0.4em;
+    padding: 0.8em;
+    box-sizing: border-box;
+    text-align: left;
+    /* touch + iOS */
+    -webkit-tap-highlight-color: transparent;
+}
+
+.channelIcon {
+    height: 3em;
+    width: auto;
+    flex-shrink: 0;
+}
+
+.channelName {
+    font-family: 'Michroma', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.2;
+    font-size: 0.8rem;
+}
+
+#cbsChannelButton {
+    border-color: white;
+}
+
+#dfChannelButton {
+    border-color: yellow;
+}
+
+#tdmChannelButton {
+    border-color: cornflowerblue;
+}
+
+
+#messageBox {
+    box-sizing: border-box;
+    margin: 1em;
+    font-size: clamp(0.5rem, 0.5rem + 1vw, 2rem);
+    max-height: 10vh;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Location of the box */
+    left: 0;
+    width: 100%;
+    /* Full width */
+    height: 70vh;
+    /* Enable scroll if needed */
+    background-color: black;
+    justify-content: center;
+    text-align: center;
+}
+
+.links {
+    box-sizing: border-box;
+    margin: 10vw;
+    max-height: 15vh;
+    font-size: clamp(0.5rem, 0.5rem + 0.5vw, 1.5rem);
+}
+
+/* Modal Content */
+
+#nowPlaying {
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 0%;
+    text-align: center;
+}
+
+#nowPlayingExt {
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 0%;
+    text-align: center;
+    font-size: clamp(0.8rem, 0.3rem + 0.9vw, 1.8rem);
+}
+
+#nowPlayingCover {
+    box-sizing: border-box;
+    margin: 1em;
+    text-align: center;
+    max-height: 60%;
+}
+
+:root {
+    --fs-xs: clamp(0.5rem, 0.5rem + 1vw, 1.2rem);
+    --fs-sm: clamp(0.7rem, 0.6rem + 1vw, 1.5rem);
+    --fs-md: clamp(1rem, 0.8rem + 1vw, 2rem);
+    --fs-lg: clamp(1.3rem, 1rem + 1vw, 2.5rem);
+}
+
+* {
+    touch-action: manipulation;
+}
